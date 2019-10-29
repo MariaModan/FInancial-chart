@@ -4,7 +4,6 @@ let GOOGLdata = [];
 let DISdata = [];
 let counter = 0;
 
-
 function createChart() {
 
     Highcharts.stockChart('container', {
@@ -60,6 +59,9 @@ function dateToTimestamp (date){
 
 //aranging the data in the correct format, a nested array with dates in Unix timestamp and the stock price at clsoe for each of the 100 days
 function loadDataInArray (arr, data){
+    if(data.hasOwnProperty('Note')){
+        alert('The API can make only 5 calls a minute, please try again in 1 minute')
+    };
     let obj = data["Time Series (Daily)"];
     Object.keys(obj).forEach( key => {
         arr.push([dateToTimestamp(key), parseFloat(obj[key]['4. close'])])  
@@ -67,7 +69,7 @@ function loadDataInArray (arr, data){
     return arr;
 }
 
-//the createChart fucntion will run only when we have all 3 pieces of data
+//the createChart function will run only when we have all 3 pieces of data
 function loadChart() {
     return counter === 3 ? createChart() : null;
 }
