@@ -1,7 +1,7 @@
 let seriesOptions = [];
 let AMZNdata = [];
 let GOOGLdata = [];
-let DISdata = [];
+let FBdata = [];
 let counter = 0;
 
 function createChart() {
@@ -100,12 +100,12 @@ fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=GOOGL
 })
 .catch(err => console.log(err))
 
-//get stock data for Disney for the past 100 days
-fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=DIS&outputsize=compact&apikey=9E0Z7UEECE50GTB5')
+//get stock data for Facebook for the past 100 days
+fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=FB&outputsize=compact&apikey=9E0Z7UEECE50GTB5')
 .then(response => response.json())
 .then(data => {
-    DISata = loadDataInArray(DISdata, data).reverse();
-    seriesOptions.push({name: 'DIS', data:DISdata});
+    FBata = loadDataInArray(FBdata, data).reverse();
+    seriesOptions.push({name: 'FB', data:FBdata});
     counter++;
     loadChart();
 })
